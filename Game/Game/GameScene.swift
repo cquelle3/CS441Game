@@ -8,8 +8,11 @@
 
 import SpriteKit
 import GameplayKit
+import UIKit
 
 class GameScene: SKScene {
+    
+    var points = [CGPoint]();
     
     var ball = SKSpriteNode()
     
@@ -25,7 +28,39 @@ class GameScene: SKScene {
         self.physicsBody = border;
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //touchDown
+        points.removeAll();
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //touchMoved
+        for t in touches{
+            points.append(t.location(in: self));
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //touchUp
+        let linePath = CGMutablePath();
+        linePath.move(to: points[0]);
+        
+        for p in points{
+            linePath.addLine(to: p);
+        }
+        
+        let line = SKShapeNode();
+        line.path = linePath;
+        line.lineWidth = 2;
+        line.name = "Line";
+        
+        self.addChild(line);
+        print(self.children);
+    }
+    
     override func update(_ currentTime: TimeInterval){
         
     }
+
 }
+
