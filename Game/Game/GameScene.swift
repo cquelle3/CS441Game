@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 import UIKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKSceneDelegate {
     
     var points = [CGPoint]();
     var lineCollisions = [SKPhysicsBody]();
@@ -18,6 +18,7 @@ class GameScene: SKScene {
     var ball = SKSpriteNode()
     
     override func didMove(to view: SKView) {
+        
         ball = self.childNode(withName: "Ball") as! SKSpriteNode;
         ball.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 300));
         
@@ -33,6 +34,12 @@ class GameScene: SKScene {
         //touchDown
         points.removeAll();
         lineCollisions.removeAll();
+        for child in self.children{
+            if(child.name == "Line"){
+                child.physicsBody = nil;
+                child.removeFromParent();
+            }
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -53,7 +60,7 @@ class GameScene: SKScene {
         
         let line = SKShapeNode();
         line.path = linePath;
-        line.lineWidth = 2;
+        line.lineWidth = 3;
         line.name = "Line";
         
         for p in 0..<points.count-1 {
@@ -65,7 +72,16 @@ class GameScene: SKScene {
         line.physicsBody = collision;
         
         self.addChild(line);
-        print(self.children);
+        //print(self.children);
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact){
+        if(contact.bodyA.node?.name == "Ball" && contact.bodyB.node?.name == "Line"){
+            points.removeAll();
+            lineCollisions.removeAll();
+            contact.bodyB.node?.physicsBody = nil;
+            contact.bodyB.node?.removeFromParent();
+        }
     }
     
     override func update(_ currentTime: TimeInterval){
