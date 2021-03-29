@@ -13,6 +13,7 @@ import UIKit
 class GameScene: SKScene {
     
     var points = [CGPoint]();
+    var lineCollisions = [SKPhysicsBody]();
     
     var ball = SKSpriteNode()
     
@@ -31,6 +32,7 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //touchDown
         points.removeAll();
+        lineCollisions.removeAll();
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -53,6 +55,14 @@ class GameScene: SKScene {
         line.path = linePath;
         line.lineWidth = 2;
         line.name = "Line";
+        
+        for p in 0..<points.count-1 {
+            lineCollisions.append(SKPhysicsBody(edgeFrom: points[p], to: points[p+1]));
+        }
+        
+        let collision = SKPhysicsBody(bodies: lineCollisions);
+        collision.isDynamic = false;
+        line.physicsBody = collision;
         
         self.addChild(line);
         print(self.children);
