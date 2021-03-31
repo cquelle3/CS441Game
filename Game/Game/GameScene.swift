@@ -10,28 +10,29 @@ import SpriteKit
 import GameplayKit
 import UIKit
 
-class GameScene: SKScene, SKSceneDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var points = [CGPoint]();
     var lineCollisions = [SKPhysicsBody]();
     
     var ball = SKSpriteNode()
     
+    var score = 0;
+    var scoreLabel: SKLabelNode!
+    
     override func didMove(to view: SKView) {
+        
+        physicsWorld.contactDelegate = self;
         
         ball = self.childNode(withName: "Ball") as! SKSpriteNode;
         ball.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 300));
         
-        let border = SKPhysicsBody(edgeLoopFrom: self.frame);
+        scoreLabel = self.childNode(withName: "Score") as? SKLabelNode;
+        scoreLabel.text = String(score);
         
-        border.friction = 0;
-        border.restitution = 1;
-        
-        self.physicsBody = border;
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //touchDown
         points.removeAll();
         lineCollisions.removeAll();
         for child in self.children{
@@ -43,14 +44,12 @@ class GameScene: SKScene, SKSceneDelegate {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //touchMoved
         for t in touches{
             points.append(t.location(in: self));
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //touchUp
         let linePath = CGMutablePath();
         linePath.move(to: points[0]);
         
@@ -72,15 +71,25 @@ class GameScene: SKScene, SKSceneDelegate {
         line.physicsBody = collision;
         
         self.addChild(line);
-        //print(self.children);
     }
     
     func didBegin(_ contact: SKPhysicsContact){
-        if(contact.bodyA.node?.name == "Ball" && contact.bodyB.node?.name == "Line"){
+        if(contact.bodyA.node?.name == "Line" && contact.bodyB.node?.name == "Ball"){
             points.removeAll();
             lineCollisions.removeAll();
-            contact.bodyB.node?.physicsBody = nil;
-            contact.bodyB.node?.removeFromParent();
+            for child in self.children{
+                if(child.name == "Line"){
+                    child.physicsBody = nil;
+                    child.removeFromParent();
+                }
+            }
+        }
+        
+        if(contact.bodyA.node?.name == "PointLine" && contact.bodyB.node?.name == "Ball"){
+            score = score + 1;
+            scoreLabel.text = String(score);
+            ball.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 300));
+            print(score);
         }
     }
     
