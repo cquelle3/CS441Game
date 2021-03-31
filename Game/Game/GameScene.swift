@@ -88,7 +88,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(contact.bodyA.node?.name == "PointLine" && contact.bodyB.node?.name == "Ball"){
             score = score + 1;
             scoreLabel.text = String(score);
-            ball.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 300));
             print(score);
         }
     }
