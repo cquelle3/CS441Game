@@ -15,10 +15,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var points = [CGPoint]();
     var lineCollisions = [SKPhysicsBody]();
     
-    var ball = SKSpriteNode()
+    var ball = SKSpriteNode();
+    
+    var gameOverLine = SKSpriteNode();
+    var yPos = 0.5;
     
     var score = 0;
     var scoreLabel: SKLabelNode!
+
     
     override func didMove(to view: SKView) {
         
@@ -26,6 +30,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         ball = self.childNode(withName: "Ball") as! SKSpriteNode;
         ball.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 300));
+        
+        gameOverLine = self.childNode(withName: "GameOverLine") as! SKSpriteNode;
         
         scoreLabel = self.childNode(withName: "Score") as? SKLabelNode;
         scoreLabel.text = String(score);
@@ -89,6 +95,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             score = score + 1;
             scoreLabel.text = String(score);
             print(score);
+         
+            let temp = gameOverLine.physicsBody;
+            gameOverLine.physicsBody = nil;
+            yPos = yPos - 0.05;
+            gameOverLine.anchorPoint = CGPoint(x: 0.5, y: yPos);
+            gameOverLine.physicsBody = temp;
+            
         }
     }
     
