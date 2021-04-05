@@ -31,6 +31,14 @@
                                     <segue destination="3DG-sE-iX6" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="Jcb-kt-c1V"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQy-Be-qNr">
+                                <rect key="frame" x="167" y="506" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Instructions"/>
+                                <connections>
+                                    <segue destination="WPO-Tv-rHm" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="uMO-WH-vJU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
@@ -38,12 +46,60 @@
                     <navigationItem key="navigationItem" id="toa-hG-Obw"/>
                     <connections>
                         <outlet property="highScoreButton" destination="gTq-EN-0oJ" id="l6i-Bv-Gvx"/>
+                        <outlet property="instructionsButton" destination="RQy-Be-qNr" id="GHk-tK-nhd"/>
                         <outlet property="startButton" destination="ijY-39-8vQ" id="ekY-eE-oni"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139" y="86"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2ml-UA-c2S">
+            <objects>
+                <viewController id="WPO-Tv-rHm" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lnh-mv-2VQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-Everytime the ball touches the top wall, you gain a point! However, the bottom wall will move up." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0f0-71-CYg">
+                                <rect key="frame" x="62" y="261" width="283" height="111"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5B-U8-Ncm">
+                                <rect key="frame" x="62" y="352" width="291" height="151"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">-Draw lines on screen to prevent the ball from touching the bottom. Only one line will stay on screen at a time. Lines do not form until after you lift your finger up.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axv-9R-pR6">
+                                <rect key="frame" x="68" y="91" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="48h-FA-dTZ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-The goal of the game is make sure  the ball doesn't touch the bottom!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uo9-c9-Pjf">
+                                <rect key="frame" x="62" y="154" width="270" height="127"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="HNf-qu-6XT"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WBr-jh-e2d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="775.44642857142856"/>
         </scene>
         <!--High Scores-->
         <scene sceneID="pjg-xg-hqf">
@@ -87,4 +143,7 @@
             <point key="canvasLocation" x="949.27536231884062" y="85.714285714285708"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="48h-FA-dTZ"/>
+    </inferredMetricsTieBreakers>
 </document>

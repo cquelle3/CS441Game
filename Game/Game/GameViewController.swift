@@ -14,6 +14,7 @@ class GameViewController: UIViewController {
 
     @IBOutlet var startButton: UIButton!
     @IBOutlet var highScoreButton: UIButton!
+    @IBOutlet var instructionsButton: UIButton!
     
     var timer: Timer?
     
@@ -53,10 +54,12 @@ class GameViewController: UIViewController {
         if(MenuManager.manage.getStartButton() == true){
             startButton.isHidden = false;
             highScoreButton.isHidden = false;
+            instructionsButton.isHidden = false;
         }
         else{
             startButton.isHidden = true;
             highScoreButton.isHidden = true;
+            instructionsButton.isHidden = true;
         }
     }
     

@@ -24,6 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var score = 0;
     var scoreLabel: SKLabelNode!
 
+    var wallDown = SKSpriteNode();
     
     override func didMove(to view: SKView) {
         
@@ -39,6 +40,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         xPos = gameOverLine.position.x;
         yPos = gameOverLine.position.y;
+        
+        wallDown = self.childNode(withName: "WallDown") as! SKSpriteNode;
+        for child in self.children{
+            if(child.name == "WallDown"){
+                child.physicsBody = nil;
+                child.removeFromParent();
+            }
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -69,6 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let line = SKShapeNode();
         line.path = linePath;
         line.lineWidth = 3;
+        line.strokeColor = UIColor.blue;
         line.name = "Line";
         
         for p in 0..<points.count-1 {
@@ -86,42 +96,57 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(contact.bodyA.node?.name == "Line" && contact.bodyB.node?.name == "Ball"){
             points.removeAll();
             lineCollisions.removeAll();
-            for child in self.children{
-                if(child.name == "Line"){
-                    child.physicsBody = nil;
-                    child.removeFromParent();
-                }
-            }
+            
+            contact.bodyA.node?.removeFromParent();
         }
         
         if(contact.bodyA.node?.name == "PointLine" && contact.bodyB.node?.name == "Ball"){
             score = score + 1;
             scoreLabel.text = String(score);
-            print(score);
-         
+            
             yPos = yPos + 40.0;
             if(yPos >= -528){
                 yPos = -528;
             }
             let action = SKAction.move(to: CGPoint(x: 0.5, y: yPos), duration: 1);
             gameOverLine.run(action);
-            //print(gameOverLine.position);
+            
+            if(score % 5 == 0){
+                print("Spawn item");
+                let randX = Int.random(in: 0..<200);
+                let randY = Int.random(in: 0..<200);
+                let randomPos = CGPoint(x: randX, y: randY);
+                
+                let item = wallDown.copy() as! SKSpriteNode;
+                item.position = randomPos;
+                item.physicsBody = SKPhysicsBody(circleOfRadius: item.size.width);
+                item.physicsBody?.isDynamic = false;
+                self.addChild(item);
+            }
             
         }
         
         if(contact.bodyA.node?.name == "GameOverLine" && contact.bodyB.node?.name == "Ball"){
-            //self.removeFromParent();
             if let view = self.view {
                 if let scene = SKScene(fileNamed: "GameOverScene") {
-                    //MenuManager.manage.setStartButton(val: true);
                     MenuManager.manage.setScore(val: score);
                     MenuManager.manage.addScore(val: score);
                     scene.scaleMode = .aspectFill
                     view.presentScene(scene);
                 }
             }
+        }
+        
+        if(contact.bodyB.node?.name == "WallDown" && contact.bodyA.node?.name == "Ball"){
+            print("Hit WallDown");
+            yPos = yPos - 160.0;
+            if(yPos < -1128){
+                yPos = -1128;
+            }
+            let action = SKAction.move(to: CGPoint(x: 0.5, y: yPos), duration: 1);
+            gameOverLine.run(action);
             
-            //self.view?.presentScene(nil);
+            contact.bodyB.node?.removeFromParent();
         }
     }
     
