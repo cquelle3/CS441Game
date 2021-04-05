@@ -12,25 +12,51 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+    @IBOutlet var startButton: UIButton!
+    
+    var timer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.checkStart), userInfo: nil, repeats: true)
+    }
+    
+    @IBAction func start(_sender: UIButton){
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
+                
+                //startButton.isHidden = true;
+                
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
+                //let transition = SKTransition.moveIn(with: .right, duration: 10);
+                
                 // Present the scene
-                view.presentScene(scene)
+                view.presentScene(scene);
+                //view.presentScene(scene, transition: transition)
             }
             
             view.ignoresSiblingOrder = true
             
             view.showsFPS = true
             view.showsNodeCount = true
+            
+            MenuManager.manage.setStartButton(val: false);
         }
     }
+    
+    @objc func checkStart(){
+        if(MenuManager.manage.getStartButton() == true){
+            startButton.isHidden = false;
+        }
+        else{
+            startButton.isHidden = true;
+        }
+    }
+    
     /*
     override var shouldAutorotate: Bool {
         return true

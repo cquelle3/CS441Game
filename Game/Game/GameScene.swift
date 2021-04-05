@@ -18,7 +18,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var ball = SKSpriteNode();
     
     var gameOverLine = SKSpriteNode();
-    var yPos = 0.5;
+    var xPos = CGFloat(0.0);
+    var yPos = CGFloat(0.0);
     
     var score = 0;
     var scoreLabel: SKLabelNode!
@@ -36,6 +37,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel = self.childNode(withName: "Score") as? SKLabelNode;
         scoreLabel.text = String(score);
         
+        xPos = gameOverLine.position.x;
+        yPos = gameOverLine.position.y;
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -96,12 +99,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scoreLabel.text = String(score);
             print(score);
          
-            let temp = gameOverLine.physicsBody;
-            gameOverLine.physicsBody = nil;
-            yPos = yPos - 0.05;
-            gameOverLine.anchorPoint = CGPoint(x: 0.5, y: yPos);
-            gameOverLine.physicsBody = temp;
+            yPos = yPos + 40.0;
+            if(yPos >= -528){
+                yPos = -528;
+            }
+            let action = SKAction.move(to: CGPoint(x: 0.5, y: yPos), duration: 1);
+            gameOverLine.run(action);
+            //print(gameOverLine.position);
             
+        }
+        
+        if(contact.bodyA.node?.name == "GameOverLine" && contact.bodyB.node?.name == "Ball"){
+            self.removeFromParent();
+            self.view?.presentScene(nil);
+            MenuManager.manage.setStartButton(val: true);
         }
     }
     
