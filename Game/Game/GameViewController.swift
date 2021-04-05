@@ -13,13 +13,14 @@ import GameplayKit
 class GameViewController: UIViewController {
 
     @IBOutlet var startButton: UIButton!
+    @IBOutlet var highScoreButton: UIButton!
     
     var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.checkStart), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.checkStart), userInfo: nil, repeats: true)
     }
     
     @IBAction func start(_sender: UIButton){
@@ -51,9 +52,11 @@ class GameViewController: UIViewController {
     @objc func checkStart(){
         if(MenuManager.manage.getStartButton() == true){
             startButton.isHidden = false;
+            highScoreButton.isHidden = false;
         }
         else{
             startButton.isHidden = true;
+            highScoreButton.isHidden = true;
         }
     }
     

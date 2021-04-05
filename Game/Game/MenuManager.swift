@@ -12,6 +12,7 @@ class MenuManager{
     
     var score = 0;
     var enableStartButton = true;
+    var scores = [Int]();
     
     func setStartButton(val: Bool){
         enableStartButton = val;
@@ -27,6 +28,15 @@ class MenuManager{
     
     func getScore() -> Int{
         return score;
+    }
+    
+    func addScore(val: Int){
+        scores.append(score);
+        print(scores);
+    }
+    
+    func getScores() -> [Int]{
+        return scores;
     }
     
     public static let manage = MenuManager();

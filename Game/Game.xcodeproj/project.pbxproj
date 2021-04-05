@@ -18,6 +18,9 @@
 		4467D3CB260B8807008D4D81 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4467D3CA260B8807008D4D81 /* GameTests.swift */; };
 		4467D3D6260B8807008D4D81 /* GameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4467D3D5260B8807008D4D81 /* GameUITests.swift */; };
 		447F9DDB261B5354003B7761 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F9DDA261B5354003B7761 /* MenuManager.swift */; };
+		44B2D035261B7BB3003E56A0 /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 44B2D034261B7BB3003E56A0 /* GameOverScene.sks */; };
+		44B2D037261B80A2003E56A0 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B2D036261B80A2003E56A0 /* GameOverScene.swift */; };
+		44B2D039261B84F5003E56A0 /* HighScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B2D038261B84F5003E56A0 /* HighScores.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		4467D3D5260B8807008D4D81 /* GameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUITests.swift; sourceTree = "<group>"; };
 		4467D3D7260B8807008D4D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		447F9DDA261B5354003B7761 /* MenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
+		44B2D034261B7BB3003E56A0 /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
+		44B2D036261B80A2003E56A0 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		44B2D038261B84F5003E56A0 /* HighScores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScores.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,10 +113,13 @@
 			children = (
 				4467D3AF260B8806008D4D81 /* AppDelegate.swift */,
 				4467D3B1260B8806008D4D81 /* GameScene.sks */,
+				44B2D034261B7BB3003E56A0 /* GameOverScene.sks */,
 				4467D3B3260B8806008D4D81 /* Actions.sks */,
 				4467D3B5260B8806008D4D81 /* GameScene.swift */,
+				44B2D036261B80A2003E56A0 /* GameOverScene.swift */,
 				447F9DDA261B5354003B7761 /* MenuManager.swift */,
 				4467D3B7260B8806008D4D81 /* GameViewController.swift */,
+				44B2D038261B84F5003E56A0 /* HighScores.swift */,
 				4467D3B9260B8806008D4D81 /* Main.storyboard */,
 				4467D3BC260B8807008D4D81 /* Assets.xcassets */,
 				4467D3BE260B8807008D4D81 /* LaunchScreen.storyboard */,
@@ -245,6 +254,7 @@
 				4467D3B2260B8806008D4D81 /* GameScene.sks in Resources */,
 				4467D3BD260B8807008D4D81 /* Assets.xcassets in Resources */,
 				4467D3C0260B8807008D4D81 /* LaunchScreen.storyboard in Resources */,
+				44B2D035261B7BB3003E56A0 /* GameOverScene.sks in Resources */,
 				4467D3B4260B8806008D4D81 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,9 +280,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44B2D037261B80A2003E56A0 /* GameOverScene.swift in Sources */,
 				447F9DDB261B5354003B7761 /* MenuManager.swift in Sources */,
 				4467D3B6260B8806008D4D81 /* GameScene.swift in Sources */,
 				4467D3B8260B8806008D4D81 /* GameViewController.swift in Sources */,
+				44B2D039261B84F5003E56A0 /* HighScores.swift in Sources */,
 				4467D3B0260B8806008D4D81 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

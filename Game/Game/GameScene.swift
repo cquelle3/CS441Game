@@ -110,9 +110,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if(contact.bodyA.node?.name == "GameOverLine" && contact.bodyB.node?.name == "Ball"){
-            self.removeFromParent();
-            self.view?.presentScene(nil);
-            MenuManager.manage.setStartButton(val: true);
+            //self.removeFromParent();
+            if let view = self.view {
+                if let scene = SKScene(fileNamed: "GameOverScene") {
+                    //MenuManager.manage.setStartButton(val: true);
+                    MenuManager.manage.setScore(val: score);
+                    MenuManager.manage.addScore(val: score);
+                    scene.scaleMode = .aspectFill
+                    view.presentScene(scene);
+                }
+            }
+            
+            //self.view?.presentScene(nil);
         }
     }
     
