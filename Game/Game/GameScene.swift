@@ -21,6 +21,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xPos = CGFloat(0.0);
     var yPos = CGFloat(0.0);
     
+    var sceneHeight = CGFloat(0);
+    var sceneWidth = CGFloat(0);
+    
     var score = 0;
     var scoreLabel: SKLabelNode!
 
@@ -40,6 +43,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         xPos = gameOverLine.position.x;
         yPos = gameOverLine.position.y;
+        
+        sceneWidth = self.size.width;
+        sceneHeight = self.size.height;
         
         wallDown = self.childNode(withName: "WallDown") as! SKSpriteNode;
         for child in self.children{
@@ -105,20 +111,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scoreLabel.text = String(score);
             
             yPos = yPos + 40.0;
-            if(yPos >= -528){
-                yPos = -528;
-            }
+            //if(yPos >= -528){
+            //    yPos = -528;
+            //}
             let action = SKAction.move(to: CGPoint(x: 0.5, y: yPos), duration: 1);
             gameOverLine.run(action);
             
             if(score % 5 == 0){
                 print("Spawn item");
-                let randX = Int.random(in: 0..<200);
-                let randY = Int.random(in: 0..<200);
+                let randX = Int.random(in: -250..<250);
+                let randY = Int.random(in: Int(yPos) + 600..<500);
+                //let randomPos = CGPoint(x: randX, y: randY);
+                
                 let randomPos = CGPoint(x: randX, y: randY);
                 
                 let item = wallDown.copy() as! SKSpriteNode;
                 item.position = randomPos;
+                print(item.position);
                 item.physicsBody = SKPhysicsBody(circleOfRadius: item.size.width);
                 item.physicsBody?.isDynamic = false;
                 self.addChild(item);
@@ -139,7 +148,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if(contact.bodyB.node?.name == "WallDown" && contact.bodyA.node?.name == "Ball"){
             print("Hit WallDown");
-            yPos = yPos - 160.0;
+            yPos = yPos - 240.0;
             if(yPos < -1128){
                 yPos = -1128;
             }
