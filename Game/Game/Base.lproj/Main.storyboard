@@ -50,17 +50,33 @@
                                 <rect key="frame" x="145" y="245" width="124" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRg-B1-O2K">
+                                <rect key="frame" x="189" y="619" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Enter"/>
+                                <connections>
+                                    <action selector="enterWith_sender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="gbv-r0-M70"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AJA-aA-PJ7">
+                                <rect key="frame" x="100" y="561" width="215" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
                     <navigationItem key="navigationItem" id="toa-hG-Obw"/>
                     <connections>
+                        <outlet property="enterButton" destination="tRg-B1-O2K" id="P4R-2i-Xaf"/>
                         <outlet property="gameIcon" destination="aBA-4l-q8e" id="T5e-YW-t3x"/>
                         <outlet property="gameTitle" destination="5IQ-X5-ua8" id="HQZ-qW-Qud"/>
                         <outlet property="highScoreButton" destination="gTq-EN-0oJ" id="l6i-Bv-Gvx"/>
                         <outlet property="instructionsButton" destination="RQy-Be-qNr" id="GHk-tK-nhd"/>
                         <outlet property="startButton" destination="ijY-39-8vQ" id="ekY-eE-oni"/>
+                        <outlet property="textBar" destination="AJA-aA-PJ7" id="XhJ-lQ-YVu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

@@ -18,12 +18,18 @@ class GameOverScene: SKScene, SKPhysicsContactDelegate {
         
         scoreLabel = self.childNode(withName: "ScoreLabel") as? SKLabelNode;
         scoreLabel.text = String("Score: " + String(MenuManager.manage.getScore()));
+        MenuManager.manage.setGameOverInfo(val: true);
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.removeFromParent();
         self.view?.presentScene(nil);
         MenuManager.manage.setStartButton(val: true);
+        if(MenuManager.manage.getGameOverInfo() == true){
+            MenuManager.manage.setGameOverInfo(val: false);
+            let score = MenuManager.manage.getScore();
+            MenuManager.manage.addHighScore(val: score, s: "Player");
+        }
     }
     
 }

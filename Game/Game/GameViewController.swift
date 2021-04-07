@@ -18,6 +18,9 @@ class GameViewController: UIViewController {
     @IBOutlet var gameTitle: UILabel!
     @IBOutlet var gameIcon: UIImageView!
     
+    @IBOutlet var textBar: UITextField!
+    @IBOutlet var enterButton: UIButton!
+    
     var timer: Timer?
     
     override func viewDidLoad() {
@@ -67,6 +70,27 @@ class GameViewController: UIViewController {
             gameTitle.isHidden = true;
             gameIcon.isHidden = true;
         }
+        
+        if(MenuManager.manage.getGameOverInfo() == true){
+            textBar.isHidden = false;
+            enterButton.isHidden = false
+        }
+        else{
+            textBar.isHidden = true;
+            enterButton.isHidden = true;
+        }
+    }
+    
+    @IBAction func enter(_sender: UIButton){
+        let s = MenuManager.manage.getScore();
+        if(textBar.text?.trimmingCharacters(in: .whitespaces).isEmpty == true){
+            MenuManager.manage.addHighScore(val: s, s: "Player");
+        }
+        else{
+            let name = textBar.text!;
+            MenuManager.manage.addHighScore(val: s, s: name);
+        }
+        MenuManager.manage.setGameOverInfo(val: false);
     }
     
     /*

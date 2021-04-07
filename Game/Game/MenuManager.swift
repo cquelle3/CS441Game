@@ -12,7 +12,11 @@ class MenuManager{
     
     var score = 0;
     var enableStartButton = true;
+    var checkGameOverInfo = false;
     var scores = [Int]();
+    var names = [String]();
+    
+    var highScores:[(name: String, value: Int)] = []
     
     func setStartButton(val: Bool){
         enableStartButton = val;
@@ -37,6 +41,22 @@ class MenuManager{
     
     func getScores() -> [Int]{
         return scores;
+    }
+    
+    func addHighScore(val: Int, s: String){
+        highScores.append((s, val));
+    }
+    
+    func getHighScores() -> [(String, Int)]{
+        return highScores;
+    }
+    
+    func setGameOverInfo(val: Bool){
+        checkGameOverInfo = val;
+    }
+    
+    func getGameOverInfo() -> Bool{
+        return checkGameOverInfo;
     }
     
     public static let manage = MenuManager();
