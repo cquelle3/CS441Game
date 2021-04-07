@@ -16,6 +16,7 @@ class GameViewController: UIViewController {
     @IBOutlet var highScoreButton: UIButton!
     @IBOutlet var instructionsButton: UIButton!
     @IBOutlet var gameTitle: UILabel!
+    @IBOutlet var gameIcon: UIImageView!
     
     var timer: Timer?
     
@@ -57,12 +58,14 @@ class GameViewController: UIViewController {
             highScoreButton.isHidden = false;
             instructionsButton.isHidden = false;
             gameTitle.isHidden = false;
+            gameIcon.isHidden = false;
         }
         else{
             startButton.isHidden = true;
             highScoreButton.isHidden = true;
             instructionsButton.isHidden = true;
             gameTitle.isHidden = true;
+            gameIcon.isHidden = true;
         }
     }
     

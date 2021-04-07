@@ -40,18 +40,23 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wall Ball" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5IQ-X5-ua8">
-                                <rect key="frame" x="125" y="245" width="164" height="55"/>
+                                <rect key="frame" x="125" y="143" width="164" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="46"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="WallBall.png" translatesAutoresizingMaskIntoConstraints="NO" id="aBA-4l-q8e">
+                                <rect key="frame" x="145" y="245" width="124" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
                     <navigationItem key="navigationItem" id="toa-hG-Obw"/>
                     <connections>
+                        <outlet property="gameIcon" destination="aBA-4l-q8e" id="T5e-YW-t3x"/>
                         <outlet property="gameTitle" destination="5IQ-X5-ua8" id="HQZ-qW-Qud"/>
                         <outlet property="highScoreButton" destination="gTq-EN-0oJ" id="l6i-Bv-Gvx"/>
                         <outlet property="instructionsButton" destination="RQy-Be-qNr" id="GHk-tK-nhd"/>
@@ -159,6 +164,9 @@
             <point key="canvasLocation" x="949.27536231884062" y="85.714285714285708"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="WallBall.png" width="259.20001220703125" height="259.20001220703125"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="48h-FA-dTZ"/>
     </inferredMetricsTieBreakers>
