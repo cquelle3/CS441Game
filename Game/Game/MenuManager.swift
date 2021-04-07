@@ -45,10 +45,18 @@ class MenuManager{
     
     func addHighScore(val: Int, s: String){
         highScores.append((s, val));
+        
+        let dictionary = highScores.reduce(into: [:]) { $0[$1.0] = $1.1 };
+        UserDefaults.standard.set(dictionary, forKey: "highScores");
     }
     
-    func getHighScores() -> [(String, Int)]{
-        return highScores;
+    func getHighScores() -> [String : Int]{
+        if let loadData = UserDefaults.standard.object (forKey: "highScores") as? [String:Int] {
+            return loadData;
+        }
+        else{
+            return [String : Int]();
+        }
     }
     
     func setGameOverInfo(val: Bool){
